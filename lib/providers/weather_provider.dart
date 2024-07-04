@@ -13,7 +13,9 @@ class WeatherProvider with ChangeNotifier {
   bool get isDarkMode => _isDarkMode;
   String get errorMessage => _errorMessage;
 
-  void toggleTheme() {
+  get searchQuery => null;
+
+  void toggleDarkMode() {
     _isDarkMode = !_isDarkMode;
     notifyListeners();
   }
@@ -39,4 +41,6 @@ class WeatherProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void setErrorMessage(String s) {}
 }

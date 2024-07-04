@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'providers/weather_provider.dart';
-import 'screens/weather_screen.dart';
+import 'package:flutter_weather/providers/weather_provider.dart';
+import 'package:flutter_weather/screens/weather_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => WeatherProvider(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => WeatherProvider(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: Colors.transparent,
-        ),
-        home: WeatherScreen(),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Weather App',
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: Provider.of<WeatherProvider>(context).isDarkMode
+          ? ThemeMode.dark
+          : ThemeMode.light,
+      home: WeatherScreen(),
     );
   }
 }

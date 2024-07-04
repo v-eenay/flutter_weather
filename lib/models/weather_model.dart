@@ -43,4 +43,16 @@ class Weather {
       sunset: json['sys']['sunset'],
     );
   }
+
+  String get weatherCondition {
+    if (description.toLowerCase().contains('rain')) {
+      return 'rain';
+    } else if (description.toLowerCase().contains('snow')) {
+      return 'snow';
+    } else if (description.toLowerCase().contains('cloud')) {
+      return 'clouds';
+    } else {
+      return 'clear';
+    }
+  }
 }
